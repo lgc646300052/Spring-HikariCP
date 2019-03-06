@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>loop</servlet-name>
+    <servlet-class>com.lgc.hikari.Loop</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>searchTable</servlet-name>
+    <servlet-class>com.lgc.hikari.SearchTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loop</servlet-name>
+    <url-pattern>/loop</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>searchTable</servlet-name>
+    <url-pattern>/searchTable</url-pattern>
+  </servlet-mapping>
+</web-app>
