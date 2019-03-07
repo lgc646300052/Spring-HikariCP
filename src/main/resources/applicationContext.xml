@@ -25,7 +25,7 @@
     
     <!-- Hikari Datasource -->  
 	<bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource">  
-	 <!-- <property name="driverClassName" value="${db.driverClass}" /> --> <!-- 无需指定，除非系统无法自动识别 -->  
+	 <property name="driverClassName" value="${jdbc.driver}" /> <!-- 无需指定，除非系统无法自动识别 -->  
 	 <property name="jdbcUrl" value="${jdbc.url}" />  
 	 <property name="username" value="${jdbc.user}" />  
 	 <property name="password" value="${jdbc.password}" />  

@@ -66,6 +66,9 @@
              <configuration>
                  <source>1.8</source>
                  <target>1.8</target>
+                 <encoding>UTF-8</encoding>
+                 <!-- Maven打包时(build)，跳过Test(不执行测试用例，也不编译test包下的java类) 
+                 <skip>true</skip>-->
              </configuration>
        </plugin>
   	</plugins>

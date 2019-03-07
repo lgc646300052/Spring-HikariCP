@@ -14,13 +14,13 @@ public class TestContextListener implements ServletContextListener {
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println("++++++++++++++++++++++++自定义contextListener destroy++++++++++++++++"+ event.getServletContext());
+		System.out.println("++++++++++++++++++++++++鑷畾涔塩ontextListener destroy++++++++++++++++"+ event.getServletContext());
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println("++++++++++++++++++++++++自定义contextListener init++++++++++++++++"+ event.getServletContext().getInitParameter("contextConfigLocation"));
+		System.out.println("++++++++++++++++++++++++鑷畾涔塩ontextListener init++++++++++++++++"+ event.getServletContext().getInitParameter("contextConfigLocation"));
 		WebApplicationContext appContext = ContextLoaderListener.getCurrentWebApplicationContext();
 		String[] beanNames = appContext.getBeanDefinitionNames();
 		if (beanNames != null) {

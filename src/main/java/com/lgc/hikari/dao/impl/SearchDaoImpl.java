@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.annotation.Resource;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Service()
 public class SearchDaoImpl extends ResultSetToString {
+	private static Logger log = LoggerFactory.getLogger(SearchDaoImpl.class);
 	@Autowired
 	private HikariDataSource ds;
 	private static String TABLE = "events_waits_summary_by_thread_by_event_name";
@@ -39,31 +40,27 @@ public class SearchDaoImpl extends ResultSetToString {
 			String resultStr = ResultSetToString(rs);
 			return resultStr;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
 			if (ps != null) {
 				try {
 					ps.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
 			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
 		}
