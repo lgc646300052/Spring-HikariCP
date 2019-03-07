@@ -5,18 +5,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-@Service
+@Service()
 public class SearchDaoImpl extends ResultSetToString {
 	@Autowired
 	private HikariDataSource ds;
 	private static String TABLE = "events_waits_summary_by_thread_by_event_name";
 	private static String SQL = "SELECT * FROM "+ TABLE;
 	
+	public HikariDataSource getDs() {
+		return ds;
+	}
+
+	public void setDs(HikariDataSource ds) {
+		this.ds = ds;
+	}
+
+
 	public String getAll() {
 		Connection con = null;
 		PreparedStatement ps = null;
