@@ -1,13 +1,16 @@
-package com.lgc.hikari.dao.impl;
+package com.lgc.hikari.dao.extractor;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
-public class ResultSetToString implements RowMapper<String> {
-	protected String ResultSetToString(ResultSet rs) throws SQLException {
+public class StringResultSetExtractor implements ResultSetExtractor<String> {
+
+	@Override
+	public String extractData(ResultSet rs) throws SQLException, DataAccessException {
 		StringBuilder buffer = new StringBuilder("result:[");
 		ResultSetMetaData metaData = rs.getMetaData();
 		int columnCount = metaData.getColumnCount();
@@ -28,12 +31,6 @@ public class ResultSetToString implements RowMapper<String> {
 		
 		buffer.append("]");
 		return buffer.toString();
-	}
-
-	@Override
-	public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

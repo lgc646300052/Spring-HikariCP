@@ -13,6 +13,8 @@
     
     <bean id="userServiceId" class="com.itheima.a_ioc.UserServiceImpl"></bean>
     -->
+	
+    <context:component-scan base-package="com.lgc" />
     
     <!-- 数据源properties -->
     <bean id="dataSourceProp" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -41,5 +43,7 @@
 	 <property name="maximumPoolSize" value="15" />  
 	</bean>
 	
-    <context:component-scan base-package="com.lgc" />
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourceHikari" />
+	</bean>
 </beans>

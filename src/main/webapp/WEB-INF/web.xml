@@ -12,9 +12,6 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>com.lgc.listener.TestContextListener</listener-class>
-  </listener>
   
   
   

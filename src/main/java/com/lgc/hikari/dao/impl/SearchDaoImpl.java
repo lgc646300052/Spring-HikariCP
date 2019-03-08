@@ -1,70 +1,23 @@
 package com.lgc.hikari.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
 
-import com.zaxxer.hikari.HikariDataSource;
+import com.lgc.hikari.dao.extractor.StringResultSetExtractor;
 
-@Service()
-public class SearchDaoImpl extends ResultSetToString {
+@Service
+public class SearchDaoImpl extends DataCacheBasic<String> {
 	private static Logger log = LoggerFactory.getLogger(SearchDaoImpl.class);
-	@Autowired
-	private HikariDataSource ds;
+	
 	private static String TABLE = "events_waits_summary_by_thread_by_event_name";
 	private static String SQL = "SELECT * FROM "+ TABLE;
+	// 将结果集解析为String字符串的解析器
+	private ResultSetExtractor<String> stringExtractor = new StringResultSetExtractor();
 	
-	public HikariDataSource getDs() {
-		return ds;
-	}
-
-	public void setDs(HikariDataSource ds) {
-		this.ds = ds;
-	}
-
-
 	public String getAll() {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			con = ds.getConnection();
-			ps = con.prepareStatement(SQL);
-			rs = ps.executeQuery();
-			String resultStr = ResultSetToString(rs);
-			return resultStr;
-		} catch (SQLException e) {
-			log.error(e.getMessage(), e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					log.error(e.getMessage(), e);
-				}
-			}
-		}
-		return "";
+		return query(SQL, stringExtractor);
 	}
 
 }
