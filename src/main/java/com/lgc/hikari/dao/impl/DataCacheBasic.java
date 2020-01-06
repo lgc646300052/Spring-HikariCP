@@ -30,5 +30,6 @@ public abstract class DataCacheBasic<T> {
 		}
 		return result;
 	}
+	
 
 }
